@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import HeightAndWeight from "./Components/HeightAndWeight/index"
 
 function App() {
   return (
@@ -8,9 +9,8 @@ function App() {
       <h2>Your BMI and Healthy Weight Range</h2>
       <p>There's no "perfect weight" that fits everyone. BMI, or body mass index, measures how healthy your weight is based on how tall you are. It gives you a clue to your risk for weight-related health problems.</p>
       <p>If you're over 20 and not pregnant, find out what your number is and what it means.</p>
-      
+      <HeightAndWeight/>
     </div>
   );
 }
-
 export default App;
