@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
-function HeightAndWeight() {
+import { Link } from 'react-router-dom'
 
-  const [height,setHeight] = useState()
-  const [weight,setWeight] = useState()
-  const [bmi,setBMI] = useState()
+function HeightAndWeight(props) {
 
-  const handleChange = (e) => {
-    setHeight(e)
+  const [inches,setInches] = useState(0)
+  const [feet,setFeet] = useState(0)
+  const [weight,setWeight] = useState(0)
+  const [bmi,setBMI] = useState(0)
+
+  const calculateBMI = () => {
+    const footToInches = feet * 12
+    // console.log("feet coverted to inches:",footToInches)
+    const height = footToInches+inches
+    // console.log(height)
+    const bmi = Math.floor(weight / height**2 * 703)
+    // setBMI(bmi)
+    console.log(bmi);
   }
   /*
 
@@ -16,19 +25,26 @@ function HeightAndWeight() {
     lbs / inches ** 2 * 703
     
   */
+  
+  console.log("feet:",feet)
+  console.log("inches:",inches)
+  console.log("pounds:",weight)
+
   return (
     <div>
-      <form>
+      <form onSubmit={calculateBMI()}>
         <h2>Height</h2>
         <label>Feet:</label>
-        <input></input>
+        <input name="feet" inputMode="numeric" onChange={e => setFeet(parseInt(e.target.value))}></input>
         <label>Inches:</label>
-        <input></input>
+        <input name="inches" onChange={e => setInches(parseInt(e.target.value))}></input>
         <h2>Weight</h2>
         <label>Pounds:</label>
-        <input></input>
+        <input onChange={e => setWeight(parseInt(e.target.value))} ></input>
         <br/>
-        <button type="submit" >Calculate</button>
+        <Link to={"/results/" + bmi}>
+          <button >Calculate</button>
+        </Link>
       </form>
     </div>
   );

@@ -1,8 +1,12 @@
 import { Component } from 'react';
+import {Switch, Route, Redirect} from "react-router-dom"
 import './App.css';
-import HeightAndWeight from "./Components/HeightAndWeight/index"
+import HeightAndWeight from "./Components/HeightAndWeight"
+import Results from './Components/Results';
 
 function App() {
+
+
   return (
     <div className="App">
       <h1>BMI Calculator</h1>
