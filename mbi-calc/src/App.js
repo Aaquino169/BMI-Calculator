@@ -1,11 +1,17 @@
-import { Component } from 'react';
+import React, { useState,Component } from 'react'
+
 import {Switch, Route, Redirect} from "react-router-dom"
 import './App.css';
 import HeightAndWeight from "./Components/HeightAndWeight"
 import Results from './Components/Results';
 
-function App() {
+function App(props) {
 
+  // const [bmi,setBMI] = useState()
+
+  // const resultData = (data) => {
+  //   // setBMI(data)
+  // }
 
   return (
     <div className="App">

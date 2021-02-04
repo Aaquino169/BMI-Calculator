@@ -13,9 +13,12 @@ function HeightAndWeight(props) {
     // console.log("feet coverted to inches:",footToInches)
     const height = footToInches+inches
     // console.log(height)
-    const bmi = Math.floor(weight / height**2 * 703)
-    // setBMI(bmi)
-    console.log(bmi);
+    const bmii = Math.floor(weight / height**2 * 703)
+    
+    setBMI(bmii)
+    console.log("this is the bmi in state:",bmi);
+
+
   }
   /*
 
@@ -29,10 +32,8 @@ function HeightAndWeight(props) {
   console.log("feet:",feet)
   console.log("inches:",inches)
   console.log("pounds:",weight)
-
   return (
     <div>
-      <form onSubmit={calculateBMI()}>
         <h2>Height</h2>
         <label>Feet:</label>
         <input name="feet" inputMode="numeric" onChange={e => setFeet(parseInt(e.target.value))}></input>
@@ -43,9 +44,8 @@ function HeightAndWeight(props) {
         <input onChange={e => setWeight(parseInt(e.target.value))} ></input>
         <br/>
         <Link to={"/results/" + bmi}>
-          <button >Calculate</button>
+        <button onClick={e => {calculateBMI()}}>Calculate</button>
         </Link>
-      </form>
     </div>
   );
 }
