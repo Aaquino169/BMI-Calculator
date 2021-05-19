@@ -7,7 +7,7 @@ function HeightAndWeight(props) {
   const [heightI,setHeightI] = useState(0)
   const [weight,setWeight] = useState(0)
   const [bmi,setBMI] = useState(0)
-  const [result,serResult] = useState("")
+  const [result,setResult] = useState("")
 
   function handleFeet(e){
     let f = (e.target.value)*12;
@@ -24,7 +24,20 @@ function HeightAndWeight(props) {
     setWeight(w);
   }
 
-  
+  function handleResult(){
+    if(  bmi !== 0 && bmi < 18.5) {
+      setResult ("You are under-weight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts.The healthy range for BMI is between 18.5 and 24.9.")
+    }else if(18.5 < bmi && bmi < 24.9){
+      setResult("You're in a good place now. The healthy range for BMI is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.")
+    }else if(25 < bmi && bmi < 30){
+      setResult("You are over-weight.Since your weight puts you in the overweight range, losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI is between 18.5 and 24.9.")
+    }else if(30 < bmi){
+      setResult("You are Obese. Since your weight puts you in the obese range, you're much more likely to have serious health problems.. The healthy range for BMI is between 18.5 and 24.9.")
+    }else{
+      return ""
+    }
+  }
+
 
   // const calculateBMI = () => {
   //   const footToInches = feet * 12
@@ -41,8 +54,8 @@ function HeightAndWeight(props) {
     console.log(height)
     let bmii = (weight / height ** 2) * 703;
     console.log(bmii)
-    setBMI(bmii.toFixed(2))
-
+    setBMI(bmii.toFixed(1))
+    handleResult()
   }, [heightF,heightI,weight]);
 
   
@@ -56,6 +69,7 @@ function HeightAndWeight(props) {
   */
   
   console.log("weight:",weight)
+
   return (
     <div className="app">
         <h2>Height</h2>
@@ -65,8 +79,10 @@ function HeightAndWeight(props) {
         <h2>Weight</h2>
         <input type="number" onChange={handleWeight} placeholder="Pounds"/>
         <h2>BMI : {bmi}</h2>
+        <p>{result}</p>
     </div>
   );
+
 }
 
 export default HeightAndWeight;
